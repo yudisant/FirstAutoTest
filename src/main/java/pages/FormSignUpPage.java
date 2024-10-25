@@ -36,7 +36,7 @@ public class FormSignUpPage extends AbsBasePage {
     private WebElement languageLvl;
 
     @FindBy(css = "[type='submit']")
-    private WebElement SignUpBtn;
+    private WebElement signUpBtn;
 
     @FindBy(css = "[value='beginner'")
     private WebElement languageBeginner;
@@ -45,25 +45,25 @@ public class FormSignUpPage extends AbsBasePage {
     private WebElement checkEnterData;
 
     public FormSignUpPage enterUserName() {
-        username.sendKeys(name);
+        enterText(username, name);
         logger.info("Enter username {}", username);
         return this;
     }
 
     public FormSignUpPage enterEmail() {
-        enterEmail.sendKeys(email);
+        enterText(enterEmail, email);
         logger.info("Enter email {}", email);
         return this;
     }
 
     public FormSignUpPage enterPassword() {
-        password.sendKeys(passw);
+        enterText(password, passw);
         logger.info("Enter password");
         return this;
     }
 
     public FormSignUpPage enterConfirmPassword() {
-        conPassword.sendKeys(passw);
+        enterText(conPassword, passw);
         logger.info("Enter confirm password");
         return this;
     }
@@ -77,7 +77,7 @@ public class FormSignUpPage extends AbsBasePage {
     }
 
     public FormSignUpPage enterBirthday() {
-        enterBirthday.sendKeys(birthday);
+        enterText(enterBirthday, birthday);
         logger.info("Enter birthday {}", birthday);
 
         return this;
@@ -85,16 +85,16 @@ public class FormSignUpPage extends AbsBasePage {
 
     public FormSignUpPage openPopup() {
         if(isElementReady(languageLvl) == true) {
-            languageBeginner.click();
+            clickElement(languageBeginner);
         } else {
-            languageLvl.click();
+            clickElement(languageLvl);
         }
         logger.info("Open a popUp window and select your language proficiency level");
         return this;
     }
 
     public FormSignUpPage signUpClick() {
-        SignUpBtn.click();
+        clickElement(signUpBtn);
         logger.info("Pressing the registration");
         return this;
     }

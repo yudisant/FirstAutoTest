@@ -16,11 +16,11 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class WebDriverFactory {
 
-    private final String BROWSER = System.getProperty("browser");
+    private String browser = System.getProperty("browser");
 
     public WebDriver getDriver() {
 
-        BrowserType browserType = BrowserType.valueOf(BROWSER.toUpperCase());
+        BrowserType browserType = BrowserType.valueOf(browser.toUpperCase());
 
         WebDriver driver;
 
@@ -31,14 +31,14 @@ public class WebDriverFactory {
         } else if(browserType == BrowserType.EDGE) {
             driver = new EdgeDriver();
         } else {
-            throw new BrowserNotFoundExceptions(BROWSER);
+            throw new BrowserNotFoundExceptions(browser);
         }
         return driver;
     }
 
     public WebDriver getDriver(Mode mode) {
 
-        BrowserType browserType = BrowserType.valueOf(BROWSER.toUpperCase());
+        BrowserType browserType = BrowserType.valueOf(browser.toUpperCase());
 
         WebDriver driver;
 
@@ -49,7 +49,7 @@ public class WebDriverFactory {
         } else if(browserType == BrowserType.EDGE) {
             driver = new EdgeDriver((EdgeOptions) new EdgeSetting().setting(mode.getArgument()));
         } else {
-            throw new BrowserNotFoundExceptions(BROWSER);
+            throw new BrowserNotFoundExceptions(browser);
         }
         return driver;
     }
