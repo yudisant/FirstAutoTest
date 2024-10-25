@@ -16,7 +16,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class WebDriverFactory {
 
-    private String browser = System.getProperty("browser");
+    private final String browser = System.getProperty("browser");
 
     public WebDriver getDriver() {
 

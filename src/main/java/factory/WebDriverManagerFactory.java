@@ -8,7 +8,7 @@ public class WebDriverManagerFactory { ;
 
     private WebDriverManager driverManager;
 
-    private String browser = System.getProperty("browser");
+    private final String browser = System.getProperty("browser");
 
     public WebDriverManager setDriverManager() {
 

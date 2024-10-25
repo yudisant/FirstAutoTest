@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 public abstract class AbsBasePage extends AbsCommon {
 
-    private String path;
+    private final String path;
 
     public AbsBasePage(WebDriver driver, String path) {
         super(driver);
