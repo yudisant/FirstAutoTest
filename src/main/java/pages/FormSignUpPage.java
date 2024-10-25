@@ -8,13 +8,13 @@ import org.openqa.selenium.support.FindBy;
 
 public class FormSignUpPage extends AbsBasePage {
 
-    private final String name = "Sergey";
-    private final String email = "sergey195@mail.ru";
-    private final String passw = "12Qqrt12";
-    private final String birthday = "23.12.1990";
+    private String name = "Sergey";
+    private String email = "sergey195@mail.ru";
+    private String passw = "12Qqrt12";
+    private String birthday = "23.12.1990";
 
     public FormSignUpPage(WebDriver driver) {
-        super(driver);
+        super(driver, "/form.html");
     }
 
     @FindBy(id = "username")

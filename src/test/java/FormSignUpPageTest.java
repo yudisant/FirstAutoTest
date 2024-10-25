@@ -32,16 +32,16 @@ public class FormSignUpPageTest {
 
     @Test
     public void authorization() {
-        FormSignUpPage formSignUpPage = new FormSignUpPage(driver);
-        formSignUpPage.open("/form.html");
-        formSignUpPage.enterUserName()
-                      .enterEmail()
-                      .enterPassword()
-                      .enterConfirmPassword()
-                      .checkPassword()
-                      .enterBirthday()
-                      .openPopup()
-                      .signUpClick()
-                      .checkEnterData();
+        ((FormSignUpPage) new FormSignUpPage(driver)
+                .open())
+                .enterUserName()
+                .enterEmail()
+                .enterPassword()
+                .enterConfirmPassword()
+                .checkPassword()
+                .enterBirthday()
+                .openPopup()
+                .signUpClick()
+                .checkEnterData();
     }
 }

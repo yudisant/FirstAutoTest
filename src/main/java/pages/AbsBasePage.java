@@ -6,21 +6,27 @@ import org.openqa.selenium.WebElement;
 
 public abstract class AbsBasePage extends AbsCommon {
 
-    public AbsBasePage(WebDriver driver) {
+    private String path;
+
+    public AbsBasePage(WebDriver driver, String path) {
         super(driver);
+        this.path = path;
     }
 
-    private final String BASE_URL = System.getProperty("base.url");
+    private String baseUrl = System.getProperty("base.url");
 
-    public void open(String path) {
-        driver.get(BASE_URL + path);
+    public AbsBasePage open() {
+        baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
+        driver.get(baseUrl + path);
+
+        return this;
     }
 
-    public void enterText(WebElement element, String text) {
+    protected void enterText(WebElement element, String text) {
         element.sendKeys(text);
     }
 
-    public void clickElement(WebElement element) {
+    protected void clickElement(WebElement element) {
         element.click();
     }
 }
