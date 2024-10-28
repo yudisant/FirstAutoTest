@@ -1,10 +1,11 @@
 package pages;
 
 import common.AbsCommon;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public abstract class AbsBasePage extends AbsCommon {
+public abstract class AbsBasePage <FormSignUpPage> extends AbsCommon {
 
     private final String path;
 
@@ -22,11 +23,16 @@ public abstract class AbsBasePage extends AbsCommon {
         return this;
     }
 
-    protected void enterText(WebElement element, String text) {
-        element.sendKeys(text);
+    protected void enterText(By element, String text) {
+        driver.findElement(element).sendKeys(text);
     }
 
     protected void clickElement(WebElement element) {
         element.click();
+    }
+
+    protected <T> getElement(By element) {
+        driver.findElement(element);
+        return this;
     }
 }

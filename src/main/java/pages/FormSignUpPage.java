@@ -1,14 +1,18 @@
 package pages;
 
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.security.KeyStore;
+
 public class FormSignUpPage extends AbsBasePage {
 
     private final String name = "Sergey";
+    KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
     private final String email = "sergey195@mail.ru";
     private final String passw = "12Qqrt12";
     private final String birthday = "23.12.1990";
@@ -17,32 +21,15 @@ public class FormSignUpPage extends AbsBasePage {
         super(driver, "/form.html");
     }
 
-    @FindBy(id = "username")
-    private WebElement username;
-
-    @FindBy(id = "email")
-    private WebElement enterEmail;
-
-    @FindBy(id = "password")
-    private WebElement password;
-
-    @FindBy(id = "confirm_password")
-    private WebElement conPassword;
-
-    @FindBy(id = "birthdate")
-    private WebElement enterBirthday;
-
-    @FindBy(id = "language_level")
-    private WebElement languageLvl;
-
-    @FindBy(css = "[type='submit']")
-    private WebElement signUpBtn;
-
-    @FindBy(css = "[value='beginner'")
-    private WebElement languageBeginner;
-
-    @FindBy(id = "output")
-    private WebElement checkEnterData;
+    private final By username = (By.id("username"));
+    private final By enterEmail = By.id("email");
+    private final By password = By.id("password");
+    private final By conPassword = By.id("confirm_password");
+    private final By enterBirthday = By.id("birthday");
+    private final By languageLvl = By.id("language_level");
+    private final By signUpBtn = By.cssSelector("[type='submit']");
+    private final By languageBeginner = By.cssSelector("[value='beginner'");
+    private final By checkEnterData = By.id("output");
 
     public FormSignUpPage enterUserName() {
         enterText(username, name);

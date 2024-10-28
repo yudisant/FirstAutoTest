@@ -1,6 +1,5 @@
 package factory.browserSettings;
 
-import ENUM.Mode;
 import imp.IBrowserSetting;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.AbstractDriverOptions;

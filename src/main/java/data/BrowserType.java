@@ -1,4 +1,4 @@
-package ENUM;
+package data;
 
 public enum BrowserType {
     CHROME,

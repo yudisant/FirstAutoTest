@@ -1,7 +1,7 @@
 package factory;
 
-import ENUM.BrowserType;
-import ENUM.Mode;
+import data.BrowserType;
+import data.Mode;
 import exeptions.BrowserNotFoundExceptions;
 import factory.browserSettings.ChromeSetting;
 import factory.browserSettings.EdgeSetting;

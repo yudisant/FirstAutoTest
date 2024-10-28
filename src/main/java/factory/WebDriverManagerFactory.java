@@ -1,6 +1,6 @@
 package factory;
 
-import ENUM.BrowserType;
+import data.BrowserType;
 import exeptions.BrowserNotFoundExceptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
