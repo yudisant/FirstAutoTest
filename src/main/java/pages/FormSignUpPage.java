@@ -7,6 +7,7 @@ public class FormSignUpPage extends AbsBasePage {
 
     private final String name = "Sergey";
     private final String birthday = "23.12.1990";
+    private String email;
 
     public FormSignUpPage(WebDriver driver) {
         super(driver, "/form.html");
@@ -19,6 +20,7 @@ public class FormSignUpPage extends AbsBasePage {
     }
 
     public FormSignUpPage enterEmail(String email) {
+        this.email = email;
         enterText(Locators.ENTER_EMAIL, email);
         logger.info("Enter email {}", email);
         return this;
