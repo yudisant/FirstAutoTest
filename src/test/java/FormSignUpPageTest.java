@@ -30,8 +30,8 @@ public class FormSignUpPageTest {
 
     @Test
     public void authorization() {
-        new FormSignUpPage(driver)
-                .open()
+        ((FormSignUpPage) new FormSignUpPage(driver)
+                .open())
                 .enterUserName()
                 .enterEmail()
                 .enterPassword()

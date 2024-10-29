@@ -7,7 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public abstract class AbsBasePage <T> extends AbsCommon {
+public abstract class AbsBasePage extends AbsCommon {
 
     private final String path;
 
@@ -18,11 +18,11 @@ public abstract class AbsBasePage <T> extends AbsCommon {
 
     private String baseUrl = System.getProperty("base.url");
 
-    public T open() {
+    public AbsBasePage open() {
         baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
         driver.get(baseUrl + path);
 
-        return (T) this;
+        return this;
     }
 
     protected void enterText(Locators locator, String text) {

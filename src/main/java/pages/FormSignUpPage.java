@@ -4,7 +4,7 @@ import data.Locators;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
-public class FormSignUpPage extends AbsBasePage<FormSignUpPage> {
+public class FormSignUpPage extends AbsBasePage {
 
     private final String name = "Sergey";
     private final String email = "sergey195@mail.ru";
