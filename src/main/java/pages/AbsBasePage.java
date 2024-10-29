@@ -42,14 +42,6 @@ public abstract class AbsBasePage extends AbsCommon {
         return driver.findElement(By.id(locator.getLocator()));
     }
 
-    protected By meltingLocatorId(Locators locator) {
-        return By.id(locator.getLocator());
-    }
-
-    protected By meltingLocatorCss(Locators locator) {
-        return By.cssSelector(locator.getLocator());
-    }
-
     protected boolean isElementReady(Locators locators) {
         try {
             return getElement(locators).isDisplayed() && getElement(locators).isEnabled();
