@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 public class FormSignUpPage extends AbsBasePage {
 
     private final String name = "Sergey";
-    private final String email = "sergey195@mail.ru";
-    private final String password = "12Qqrt12";
     private final String birthday = "23.12.1990";
 
     public FormSignUpPage(WebDriver driver) {
@@ -20,19 +18,19 @@ public class FormSignUpPage extends AbsBasePage {
         return this;
     }
 
-    public FormSignUpPage enterEmail() {
+    public FormSignUpPage enterEmail(String email) {
         enterText(Locators.ENTER_EMAIL, email);
         logger.info("Enter email {}", email);
         return this;
     }
 
-    public FormSignUpPage enterPassword() {
+    public FormSignUpPage enterPassword(String password) {
         enterText(Locators.PASSWORD, password);
         logger.info("Enter password");
         return this;
     }
 
-    public FormSignUpPage enterConfirmPassword() {
+    public FormSignUpPage enterConfirmPassword(String password) {
         enterText(Locators.CON_PASSWORD, password);
         logger.info("Enter confirm password");
         return this;
