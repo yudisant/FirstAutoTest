@@ -1,18 +1,12 @@
 package pages;
 
-import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
+import data.Locators;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
-import java.security.KeyStore;
-
-public class FormSignUpPage extends AbsBasePage {
+public class FormSignUpPage extends AbsBasePage<FormSignUpPage> {
 
     private final String name = "Sergey";
-    KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
     private final String email = "sergey195@mail.ru";
     private final String passw = "12Qqrt12";
     private final String birthday = "23.12.1990";
@@ -21,86 +15,76 @@ public class FormSignUpPage extends AbsBasePage {
         super(driver, "/form.html");
     }
 
-    private final By username = (By.id("username"));
-    private final By enterEmail = By.id("email");
-    private final By password = By.id("password");
-    private final By conPassword = By.id("confirm_password");
-    private final By enterBirthday = By.id("birthday");
-    private final By languageLvl = By.id("language_level");
-    private final By signUpBtn = By.cssSelector("[type='submit']");
-    private final By languageBeginner = By.cssSelector("[value='beginner'");
-    private final By checkEnterData = By.id("output");
-
     public FormSignUpPage enterUserName() {
-        enterText(username, name);
-        logger.info("Enter username {}", username);
+        enterText(Locators.USERNAME, name);
+        logger.info("Enter username {}", name);
         return this;
     }
 
     public FormSignUpPage enterEmail() {
-        enterText(enterEmail, email);
+        enterText(Locators.ENTER_EMAIL, email);
         logger.info("Enter email {}", email);
         return this;
     }
 
     public FormSignUpPage enterPassword() {
-        enterText(password, passw);
+        enterText(Locators.PASSWORD, passw);
         logger.info("Enter password");
         return this;
     }
 
     public FormSignUpPage enterConfirmPassword() {
-        enterText(conPassword, passw);
+        enterText(Locators.CON_PASSWORD, passw);
         logger.info("Enter confirm password");
         return this;
     }
 
     public FormSignUpPage checkPassword() {
-        String pass1 = password.getAttribute("value");
-        String pass2 = conPassword.getAttribute("value");
-        Assertions.assertEquals(pass1, pass2);
+        String pass1 = getElement(Locators.PASSWORD).getAttribute("value");
+        String pass2 = getElement(Locators.CON_PASSWORD).getAttribute("value");
+        checkData(pass1, pass2);
         logger.info("Comparison of the entered password and the confirmation password");
         return this;
     }
 
     public FormSignUpPage enterBirthday() {
-        enterText(enterBirthday, birthday);
+        enterText(Locators.ENTER_BIRTHDAY, birthday);
         logger.info("Enter birthday {}", birthday);
 
         return this;
     }
 
     public FormSignUpPage openPopup() {
-        if(isElementReady(languageLvl)) {
-            clickElement(languageBeginner);
+        if(isElementReady(Locators.LANGUAGE_LVL)) {
+            clickElement(meltingLocatorCss(Locators.LANGUAGE_BEGINNER));
         } else {
-            clickElement(languageLvl);
+            clickElement(meltingLocatorId(Locators.LANGUAGE_LVL));
         }
         logger.info("Open a popUp window and select your language proficiency level");
         return this;
     }
 
     public FormSignUpPage signUpClick() {
-        clickElement(signUpBtn);
+        clickElement(meltingLocatorCss(Locators.SIGN_UP_BTN));
         logger.info("Pressing the registration");
         return this;
     }
 
     public void checkEnterData() {
-        String data = checkEnterData.getText();
+        String data = getElement(Locators.CHECK_ENTER_DATA).getText();
         String enterData = String.format(
                 "Имя пользователя: %s\n" +
                 "Электронная почта: %s\n" +
                 "Дата рождения: %s\n" +
                 "Уровень языка: beginner", name, email, reverseDate(birthday));
 
-        Assertions.assertEquals(data, enterData);
+        checkData(data, enterData);
         logger.info("Comparison entered data");
     }
 
-    private boolean isElementReady(WebElement element) {
+    private boolean isElementReady(Locators locators) {
         try {
-            return element.isDisplayed() && element.isEnabled();
+            return getElement(locators).isDisplayed() && getElement(locators).isEnabled();
         } catch (NoSuchElementException ignored) {
             return false;
         }

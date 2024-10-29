@@ -1,11 +1,13 @@
 package pages;
 
 import common.AbsCommon;
+import data.Locators;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public abstract class AbsBasePage <FormSignUpPage> extends AbsCommon {
+public abstract class AbsBasePage <T> extends AbsCommon {
 
     private final String path;
 
@@ -16,23 +18,34 @@ public abstract class AbsBasePage <FormSignUpPage> extends AbsCommon {
 
     private String baseUrl = System.getProperty("base.url");
 
-    public AbsBasePage open() {
+    public T open() {
         baseUrl = baseUrl.endsWith("/") ? baseUrl.substring(0, baseUrl.length() - 1) : baseUrl;
         driver.get(baseUrl + path);
 
-        return this;
+        return (T) this;
     }
 
-    protected void enterText(By element, String text) {
-        driver.findElement(element).sendKeys(text);
+    protected void enterText(Locators locator, String text) {
+        driver.findElement(By.id(locator.getLocator())).sendKeys(text);
     }
 
-    protected void clickElement(WebElement element) {
-        element.click();
+    protected void clickElement(By element) {
+        driver.findElement(element).click();
     }
 
-    protected <T> getElement(By element) {
-        driver.findElement(element);
-        return this;
+    protected void checkData(String original, String verifiable) {
+        Assertions.assertEquals(original, verifiable);
+    }
+
+    protected WebElement getElement(Locators locator) {
+        return driver.findElement(By.id(locator.getLocator()));
+    }
+
+    protected By meltingLocatorId(Locators locator) {
+        return By.id(locator.getLocator());
+    }
+
+    protected By meltingLocatorCss(Locators locator) {
+        return By.cssSelector(locator.getLocator());
     }
 }
