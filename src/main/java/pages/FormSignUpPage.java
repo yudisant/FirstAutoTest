@@ -7,7 +7,7 @@ public class FormSignUpPage extends AbsBasePage {
 
     private final String name = "Sergey";
     private final String birthday = "23.12.1990";
-    private final String email = System.getProperty("email", "sergey195@mail.ru");
+    private final String email = System.getProperty("email");
     private final String password = System.getProperty("password");
 
     public FormSignUpPage(WebDriver driver) {

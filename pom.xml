@@ -41,8 +41,6 @@
                     <systemPropertyVariables>
                         <browser>chrome</browser>
                         <base.url>https://otus.home.kartushin.su</base.url>
-                        <email></email>
-                        <password></password>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
