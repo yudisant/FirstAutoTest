@@ -5,7 +5,7 @@ public enum Mode {
     KIOSK("--kiosk"),
     HEADLESS("--headless");
 
-    private String argument;
+    private final String argument;
 
     Mode(String argument) {
         this.argument = argument;

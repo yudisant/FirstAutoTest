@@ -4,6 +4,7 @@ import common.AbsCommon;
 import data.Locators;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -29,8 +30,8 @@ public abstract class AbsBasePage extends AbsCommon {
         driver.findElement(By.id(locator.getLocator())).sendKeys(text);
     }
 
-    protected void clickElement(By element) {
-        driver.findElement(element).click();
+    protected void clickElement(Locators locators) {
+        driver.findElement(By.cssSelector(locators.getLocator())).click();
     }
 
     protected void checkData(String original, String verifiable) {
@@ -47,5 +48,13 @@ public abstract class AbsBasePage extends AbsCommon {
 
     protected By meltingLocatorCss(Locators locator) {
         return By.cssSelector(locator.getLocator());
+    }
+
+    protected boolean isElementReady(Locators locators) {
+        try {
+            return getElement(locators).isDisplayed() && getElement(locators).isEnabled();
+        } catch (NoSuchElementException ignored) {
+            return false;
+        }
     }
 }

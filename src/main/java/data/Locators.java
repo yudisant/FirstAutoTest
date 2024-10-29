@@ -8,10 +8,10 @@ public enum Locators {
     ENTER_BIRTHDAY("birthdate"),
     LANGUAGE_LVL("language_level"),
     SIGN_UP_BTN("[type='submit']"),
-    LANGUAGE_BEGINNER("[value='beginner'"),
+    LANGUAGE_BEGINNER("[value='beginner']"),
     CHECK_ENTER_DATA("output");
 
-    private String locator;
+    private final String locator;
 
     Locators(String locator) {
         this.locator = locator;

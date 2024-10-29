@@ -1,14 +1,13 @@
 package pages;
 
 import data.Locators;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class FormSignUpPage extends AbsBasePage {
 
     private final String name = "Sergey";
     private final String email = "sergey195@mail.ru";
-    private final String passw = "12Qqrt12";
+    private final String password = "12Qqrt12";
     private final String birthday = "23.12.1990";
 
     public FormSignUpPage(WebDriver driver) {
@@ -28,13 +27,13 @@ public class FormSignUpPage extends AbsBasePage {
     }
 
     public FormSignUpPage enterPassword() {
-        enterText(Locators.PASSWORD, passw);
+        enterText(Locators.PASSWORD, password);
         logger.info("Enter password");
         return this;
     }
 
     public FormSignUpPage enterConfirmPassword() {
-        enterText(Locators.CON_PASSWORD, passw);
+        enterText(Locators.CON_PASSWORD, password);
         logger.info("Enter confirm password");
         return this;
     }
@@ -42,6 +41,7 @@ public class FormSignUpPage extends AbsBasePage {
     public FormSignUpPage checkPassword() {
         String pass1 = getElement(Locators.PASSWORD).getAttribute("value");
         String pass2 = getElement(Locators.CON_PASSWORD).getAttribute("value");
+
         checkData(pass1, pass2);
         logger.info("Comparison of the entered password and the confirmation password");
         return this;
@@ -56,16 +56,16 @@ public class FormSignUpPage extends AbsBasePage {
 
     public FormSignUpPage openPopup() {
         if(isElementReady(Locators.LANGUAGE_LVL)) {
-            clickElement(meltingLocatorCss(Locators.LANGUAGE_BEGINNER));
+            clickElement(Locators.LANGUAGE_BEGINNER);
         } else {
-            clickElement(meltingLocatorId(Locators.LANGUAGE_LVL));
+            clickElement(Locators.LANGUAGE_LVL);
         }
         logger.info("Open a popUp window and select your language proficiency level");
         return this;
     }
 
     public FormSignUpPage signUpClick() {
-        clickElement(meltingLocatorCss(Locators.SIGN_UP_BTN));
+        clickElement(Locators.SIGN_UP_BTN);
         logger.info("Pressing the registration");
         return this;
     }
@@ -80,14 +80,6 @@ public class FormSignUpPage extends AbsBasePage {
 
         checkData(data, enterData);
         logger.info("Comparison entered data");
-    }
-
-    private boolean isElementReady(Locators locators) {
-        try {
-            return getElement(locators).isDisplayed() && getElement(locators).isEnabled();
-        } catch (NoSuchElementException ignored) {
-            return false;
-        }
     }
 
     private String reverseDate(String date) {
